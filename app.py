@@ -4,17 +4,17 @@ Voice: BMT v1.1 (contractor, no "tool", no em dashes, no hedges).
 Look: BMT Design System v3.0 (dark everywhere, Streamlit default font,
       blue active, orange #ff6b35 brand accent, RAG for status).
 
+Privacy: ZERO data capture. No email, no name, no CSV writes. Nothing
+         leaves the browser beyond the Claude API call, and even that
+         only sees the anonymous answers.
+
 Run locally:
     streamlit run app.py
 """
 
 from __future__ import annotations
 
-import csv
-import json
 import os
-import re
-from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote
 
@@ -47,23 +47,7 @@ try:
 except Exception:
     pass
 
-DATA_DIR = HERE / ".tmp"
-CSV_PATH = DATA_DIR / "scorecard_leads.csv"
-CSV_FIELDS = [
-    "timestamp",
-    "company_name",
-    "email",
-    "score",
-    "tier",
-    "revenue_tier",
-    "active_projects",
-    "biggest_pain",
-    "all_answers_json",
-]
-
 CONTACT_EMAIL = "michael@blackmountaintechnologies.ca"
-
-EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
 def _no_math(text: str) -> str:
@@ -103,31 +87,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
-
-# ---------------------------------------------------------------------------
-# Lead capture
-# ---------------------------------------------------------------------------
-
-def write_lead_row(company_name: str, email: str, score: dict, answers: dict) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    file_exists = CSV_PATH.exists()
-    row = {
-        "timestamp": datetime.utcnow().isoformat(timespec="seconds") + "Z",
-        "company_name": company_name,
-        "email": email,
-        "score": score["normalized"],
-        "tier": score["tier"]["name"],
-        "revenue_tier": answers.get("q9", ""),
-        "active_projects": answers.get("q8", ""),
-        "biggest_pain": answers.get("q10", ""),
-        "all_answers_json": json.dumps(answers, ensure_ascii=False),
-    }
-    with open(CSV_PATH, "a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow(row)
 
 
 # ---------------------------------------------------------------------------
@@ -172,6 +131,25 @@ def render_landing() -> None:
         "walking out the door on every job you close. Sized to your company.</div>",
         unsafe_allow_html=True,
     )
+
+    # Privacy callout — sits above the fold so skimmers see it first.
+    st.markdown(
+        """
+        <div class="bmt-privacy-note">
+            <p><strong>Heads up. This is actually free. No strings.</strong></p>
+            <p>We don't collect your email. We don't ask for your name.
+            Your answers don't get stored on any server, sent to any CRM,
+            or logged anywhere. Close this tab and there's no trace you
+            were ever here. Nothing gets emailed to you after.</p>
+            <p>Why do it this way? We're trying to help Canadian GCs
+            stop losing margin to the same process gaps year after year.
+            If what you see is useful, you know where to find us. If it
+            isn't, you're out 60 seconds. That's the whole deal.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     st.markdown(
         "Most Canadian GCs, from \\$5M to \\$500M+, are bleeding **3% to 8% of "
         "annual revenue** before close-out even hits. That number scales with "
@@ -287,10 +265,9 @@ def render_landing() -> None:
         "close-out, change orders, and labor tracking actually look like "
         "because it was built by people who run jobs. Not by a SaaS team "
         "that read a book about construction.\n"
-        "- **Private by design.** No login. No data upload. No account. No "
-        "calendar invite. No export. Your P&L never leaves your server. "
-        "You don't even need to give your real name to see your number. "
-        "Screenshot the result if you want to keep it.\n"
+        "- **Fully anonymous.** No login, no name, no email, no account. "
+        "Nothing leaves your browser except the 10 answers going to the AI, "
+        "and even those don't get stored.\n"
         "- **Risk reversal built in.** If the output doesn't name at least "
         "one specific leak you could fix this week, book a free 15-minute "
         "discovery call. We'll find it live, or we'll tell you straight "
@@ -338,28 +315,7 @@ def render_landing() -> None:
 def render_form() -> tuple[bool, dict]:
     with st.form("scorecard_form", clear_on_submit=False):
         st.markdown(
-            "<div class='bmt-section-heading'>Your info (optional)</div>",
-            unsafe_allow_html=True,
-        )
-        st.caption(
-            "Both fields are optional. Fill them in if you want follow-up. "
-            "Skip them and your result still renders. No gate."
-        )
-        col_a, col_b = st.columns(2)
-        with col_a:
-            company_name = st.text_input(
-                "Company name (optional)",
-                max_chars=50,
-                placeholder="e.g. Northshore Construction Ltd.",
-            )
-        with col_b:
-            email = st.text_input(
-                "Work email (optional)",
-                placeholder="you@yourcompany.com",
-            )
-
-        st.markdown(
-            "<div class='bmt-section-heading' style='margin-top:1.4rem;'>10 questions</div>",
+            "<div class='bmt-section-heading'>10 questions</div>",
             unsafe_allow_html=True,
         )
 
@@ -415,20 +371,11 @@ def render_form() -> tuple[bool, dict]:
         st.markdown("")
         submitted = st.form_submit_button("See my margin leak breakdown")
 
-    return submitted, {
-        "company_name": company_name.strip() if company_name else "",
-        "email": email.strip() if email else "",
-        "answers": answers,
-    }
+    return submitted, {"answers": answers}
 
 
-def validate(company_name: str, email: str, answers: dict) -> list[str]:
-    """Company name and email are both optional. Only validate format if provided."""
+def validate(answers: dict) -> list[str]:
     errs: list[str] = []
-    if company_name and len(company_name) > 50:
-        errs.append("Company name must be 50 characters or fewer.")
-    if email and not EMAIL_RE.match(email):
-        errs.append("That email doesn't look right. Double-check, or leave it blank.")
     for q in QUESTIONS:
         if q["id"] == "q10":
             continue
@@ -437,21 +384,15 @@ def validate(company_name: str, email: str, answers: dict) -> list[str]:
     return errs
 
 
-def render_result(
-    company_name: str,
-    score: dict,
-    ai: dict,
-) -> None:
+def render_result(score: dict, ai: dict) -> None:
     tier = score["tier"]
     color = tier["color"]
-    display_name = (company_name or "").strip() or "Your Scorecard"
-    safe_company = _no_math(display_name)
 
     st.markdown(
         "<div class='bmt-tagline'>Your scorecard</div>",
         unsafe_allow_html=True,
     )
-    st.markdown(f"# {safe_company}")
+    st.markdown("# Your Margin Leak Read")
 
     st.markdown(
         f"""
@@ -499,7 +440,7 @@ def render_result(
             unsafe_allow_html=True,
         )
 
-    # Plain-English action plan (grade-6, DO / WHY / HOW playbook / RECOVERY)
+    # Plain-English action plan (grade-6, DO / WHY / 3-step playbook)
     plan = ai.get("plain_english_plan") or []
     if isinstance(plan, list) and plan:
         item_blocks = []
@@ -551,12 +492,11 @@ def render_result(
             unsafe_allow_html=True,
         )
 
-    mailto_company = company_name or "(company name not provided)"
-    subject = quote(f"Discovery call · Scorecard result · {mailto_company}")
+    subject = quote(f"Discovery call · Scorecard result · {score['normalized']}/100 {tier['name']}")
     body = quote(
         f"Hi Michael,\n\n"
-        f"I just ran the Margin Leak Scorecard for {mailto_company}.\n"
-        f"My score was {score['normalized']}/100 ({tier['name']}).\n\n"
+        f"I just ran the Margin Leak Scorecard. My score was "
+        f"{score['normalized']}/100 ({tier['name']}).\n\n"
         f"I'd like to book a 15-minute discovery call to see the full "
         f"software.\n\n"
         f"Thanks."
@@ -572,14 +512,13 @@ def render_result(
     if ai.get("_error"):
         st.info(
             "Heads up. The AI breakdown fell back to a generic version because of "
-            f"an error. `{ai['_error']}`. Your results are still saved for follow-up."
+            f"an error. `{ai['_error']}`."
         )
 
     st.write("")
     if st.button("Start over", key="restart"):
-        for k in ("result", "company_name", "email"):
-            if k in st.session_state:
-                del st.session_state[k]
+        if "result" in st.session_state:
+            del st.session_state["result"]
         st.rerun()
 
 
@@ -589,7 +528,6 @@ def render_result(
 
 if "result" in st.session_state:
     render_result(
-        st.session_state["company_name"],
         st.session_state["result"]["score"],
         st.session_state["result"]["ai"],
     )
@@ -598,33 +536,18 @@ else:
     submitted, payload = render_form()
 
     if submitted:
-        errs = validate(payload["company_name"], payload["email"], payload["answers"])
+        errs = validate(payload["answers"])
         if errs:
             for e in errs:
                 st.error(e)
         else:
             with st.spinner("Crunching your answers..."):
                 score = compute_score(payload["answers"])
-                ai = call_claude(payload["answers"], score, payload["company_name"])
+                ai = call_claude(payload["answers"], score, company_name="")
 
-            try:
-                write_lead_row(
-                    payload["company_name"],
-                    payload["email"],
-                    score,
-                    payload["answers"],
-                )
-            except Exception as e:
-                st.warning(f"Couldn't save lead row. {e}")
-
-            st.session_state["company_name"] = payload["company_name"]
-            st.session_state["email"] = payload["email"]
-            st.session_state["result"] = {
-                "score": score,
-                "ai": ai,
-                "answers": payload["answers"],
-            }
-            # Rerun switches to results-only view (clears form/landing cleanly).
+            # NOTE: no write_lead_row, no CSV, no session state beyond result.
+            # Nothing leaves the browser except the Claude API call.
+            st.session_state["result"] = {"score": score, "ai": ai}
             st.rerun()
 
 st.markdown(

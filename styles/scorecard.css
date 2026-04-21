@@ -9,6 +9,27 @@
     padding-top: 2rem !important;
 }
 
+/* ── Privacy note (top of landing, trust-building, subtle) ───── */
+.bmt-privacy-note {
+    background: rgba(226, 232, 240, 0.03);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-secondary);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 14px 0 22px 0;
+}
+.bmt-privacy-note p {
+    color: var(--text-value);
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0 0 8px 0;
+}
+.bmt-privacy-note p:last-child { margin-bottom: 0; }
+.bmt-privacy-note strong {
+    color: var(--text-heading);
+    font-weight: 700;
+}
+
 /* ── Landing copy ─────────────────────────────────────────────── */
 .bmt-tagline {
     color: var(--brand-accent);
