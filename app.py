@@ -194,19 +194,18 @@ def render_landing() -> None:
         unsafe_allow_html=True,
     )
     st.markdown(
-        "A free AI-powered self-assessment we built for Canadian GC owners and "
-        "operators who are thinking about working with us. The scoring is "
-        "deterministic math. The breakdown is Claude Opus 4.7 reading your "
-        "answers and telling you what they actually mean for your margin. No "
-        "demo dressed up to make us look good. You answer honest, you get an "
-        "honest read."
+        "A free AI self-assessment we built for Canadian GC owners thinking "
+        "about working with us. The score is pure math on your answers. The "
+        "breakdown is Claude Opus 4.7 reading what you said and telling you "
+        "what it means for your margin. No demo dressed up to make us look "
+        "good. Answer honest, get an honest read."
     )
     st.markdown(
-        "The value you walk away with is proportional to how tight or sloppy "
-        "you run. A small shop with okay process might see **\\$50K** worth "
-        "of fixable leaks. A \\$100M shop with blind spots might see "
-        "**\\$500K to \\$2M**. Either way, you leave with a number you "
-        "didn't have when you showed up. That's why it exists."
+        "What you walk away with depends on how tight or sloppy you run. A "
+        "small shop with decent process might spot **\\$50K** in fixable "
+        "leaks. A \\$100M shop with blind spots might see **\\$500K to "
+        "\\$2M**. Either way, you leave with a number you didn't have "
+        "walking in. That's why this exists."
     )
 
     st.markdown(
@@ -245,23 +244,21 @@ def render_landing() -> None:
         unsafe_allow_html=True,
     )
     st.markdown(
-        "You will never hit zero. Construction has variables. Weather hits. "
-        "Subs no-show. Material prices move mid-job. Bid assumptions break. "
-        "That is the reality of the trades, and anyone who tells you "
-        "otherwise is selling you something."
+        "You'll never hit zero. Construction has variables. Weather hits. "
+        "Subs no-show. Material prices move mid-job. Bids break. That's "
+        "the reality of the trades, and anyone telling you otherwise is "
+        "selling you something."
     )
     st.markdown(
-        "**The aim is airtight. Nobody actually hits it. The shops that "
-        "grow just get closer than everyone else on the bid list.** Make "
-        "the process as watertight as you can so when the variables hit, "
-        "the leak is measurable and containable, not mysterious and "
-        "compounding into the next job."
+        "**The aim is airtight. Nobody actually hits it.** Make your "
+        "process as tight as you can so when things go sideways, the leak "
+        "is easy to spot and small to contain, not buried in close-out."
     )
     st.markdown(
-        "That's what modern construction AI does. It doesn't stop the "
-        "weather. It catches the leak the weather caused before it hides "
-        "in close-out. **The contractors who actually grow don't chase "
-        "perfect jobs. They chase tight process.**"
+        "That's what modern construction AI does. It doesn't stop weather. "
+        "It catches the leak weather caused before it hides in close-out. "
+        "**Shops that grow don't chase perfect jobs. They chase tight "
+        "process.**"
     )
 
     st.markdown(
