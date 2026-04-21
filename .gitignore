@@ -1,0 +1,32 @@
+# Secrets
+.env
+credentials.json
+token.json
+
+# Temporary / runtime files — recreated as needed
+.tmp/
+
+# Shared docs live in /Users/michaelmackrell/BMT_Shared (symlinked locally).
+# Not needed at runtime, do not ship to deploy.
+DESIGN_SYSTEM.md
+VOICE_GUIDE.md
+
+# Agent-local instructions (not for production)
+CLAUDE.md
+
+# Screenshots (test artifacts from local dev)
+Screenshot*.png
+*.png
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

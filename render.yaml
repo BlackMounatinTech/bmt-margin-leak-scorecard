@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: bmt-margin-leak-scorecard
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true --browser.gatherUsageStats false"
+    autoDeploy: true
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANTHROPIC_MODEL
+        value: claude-opus-4-7
+      - key: PYTHON_VERSION
+        value: "3.11"

@@ -1,0 +1,220 @@
+/* ─────────────────────────────────────────────────────────────────
+   BMT Design System v3.0 — base theme
+   Canonical: /Users/michaelmackrell/BMT_Shared/DESIGN_SYSTEM.md v3.0
+   Dark everywhere. Streamlit default font (no custom import).
+   Blue active. Orange brand. RAG for status.
+   ───────────────────────────────────────────────────────────────── */
+
+:root {
+    /* Backgrounds */
+    --bg-app: #0a0f1a;
+    --bg-sidebar: #0d1321;
+    --bg-card: #111827;
+    --bg-card-alt: #1a1f2e;
+    --bg-card-accent: #1e293b;
+
+    /* Borders */
+    --border: #1e293b;
+    --border-hover: #334155;
+
+    /* Text */
+    --text-heading: #f1f5f9;
+    --text-body: #cbd5e1;
+    --text-value: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+
+    /* Interactive */
+    --active-border: #3b82f6;
+
+    /* Brand */
+    --brand-accent: #ff6b35;
+
+    /* RAG */
+    --rag-green: #22c55e;
+    --rag-yellow: #f59e0b;
+    --rag-red: #ef4444;
+
+    /* Severity */
+    --sev-critical: #ef4444;
+    --sev-high: #f59e0b;
+    --sev-medium: #3b82f6;
+    --sev-low: #64748b;
+}
+
+/* ── Global shell ──────────────────────────────────────────────── */
+.stApp {
+    background-color: var(--bg-app);
+}
+[data-testid="stHeader"] {
+    background-color: var(--bg-app);
+}
+[data-testid="stSidebar"] {
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+}
+[data-testid="stSidebar"] * {
+    color: var(--text-secondary) !important;
+}
+[data-testid="stSidebar"] h1 {
+    color: var(--text-heading) !important;
+}
+
+/* ── Headings + body (Streamlit default font stack) ───────────── */
+h1, h2, h3 {
+    color: var(--text-heading) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02em;
+}
+h4, h5, h6 {
+    color: var(--text-heading) !important;
+    font-weight: 600 !important;
+}
+p, span, label, div, li {
+    color: var(--text-body);
+}
+strong, b {
+    color: var(--text-heading);
+    font-weight: 700;
+}
+p, li { line-height: 1.6; }
+
+/* ── Metric cards ─────────────────────────────────────────────── */
+[data-testid="stMetric"] {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-accent) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 12px;
+    overflow: visible !important;
+    min-width: 0;
+}
+[data-testid="stMetric"] > div,
+[data-testid="stMetric"] > div > div {
+    overflow: visible !important;
+}
+[data-testid="stMetricLabel"] {
+    color: var(--text-tertiary) !important;
+    font-size: 11px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    overflow: visible !important;
+}
+[data-testid="stMetricValue"] {
+    color: var(--text-heading) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+}
+[data-testid="stMetricDelta"] { font-size: 13px !important; }
+
+/* ── Plotly ───────────────────────────────────────────────────── */
+.js-plotly-plot .plotly .main-svg { background: transparent !important; }
+
+/* ── Dataframes ───────────────────────────────────────────────── */
+[data-testid="stDataFrame"] {
+    border-radius: 12px;
+    overflow: hidden;
+}
+.stDataFrame div[data-testid="stDataFrameResizable"] {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+/* ── Dividers ─────────────────────────────────────────────────── */
+hr { border-color: var(--border) !important; }
+
+/* ── Tabs ─────────────────────────────────────────────────────── */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    background: transparent;
+}
+.stTabs [data-baseweb="tab"] {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    padding: 8px 20px;
+}
+.stTabs [aria-selected="true"] {
+    background: var(--bg-card-accent) !important;
+    border-color: var(--active-border) !important;
+    color: var(--text-heading) !important;
+}
+
+/* ── Inputs / selects / textareas ─────────────────────────────── */
+[data-testid="stSelectbox"] div[data-baseweb="select"],
+.stTextInput > div > div > input,
+.stNumberInput > div > div > input,
+.stTextArea > div > div > textarea {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-heading) !important;
+    border-radius: 8px !important;
+}
+.stTextInput > div > div:focus-within,
+.stNumberInput > div > div:focus-within,
+.stTextArea > div > div:focus-within,
+[data-testid="stSelectbox"] div[data-baseweb="select"]:focus-within {
+    border-color: var(--active-border) !important;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15) !important;
+}
+
+/* ── Hide Streamlit chrome ────────────────────────────────────── */
+#MainMenu, footer { display: none; }
+
+/* ── Sidebar logo ─────────────────────────────────────────────── */
+[data-testid="stSidebar"] img {
+    filter: invert(1) brightness(2);
+    background: transparent !important;
+}
+
+/* ── Section header (from design system) ─────────────────────── */
+.section-header {
+    color: var(--text-heading);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* ── Mobile ───────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .stApp { padding: 0 !important; }
+    [data-testid="stSidebar"] { min-width: 200px !important; }
+    [data-testid="stHorizontalBlock"] {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+    }
+    [data-testid="stHorizontalBlock"] > div {
+        flex: 1 1 100% !important;
+        min-width: 0 !important;
+    }
+    [data-testid="stMetric"] {
+        padding: 10px 10px !important;
+        border-radius: 8px !important;
+    }
+    [data-testid="stMetricValue"] { font-size: 16px !important; }
+    [data-testid="stMetricLabel"] { font-size: 10px !important; }
+    .stTabs [data-baseweb="tab"] {
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+    }
+    .section-header {
+        font-size: 11px !important;
+        margin-bottom: 12px !important;
+        padding-bottom: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    [data-testid="stMetricValue"] { font-size: 14px !important; }
+    h1 { font-size: 20px !important; }
+    h2 { font-size: 16px !important; }
+    h3 { font-size: 14px !important; }
+}
