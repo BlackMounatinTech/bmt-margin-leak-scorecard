@@ -136,15 +136,11 @@ def render_landing() -> None:
     st.markdown(
         """
         <div class="bmt-privacy-note">
-            <p><strong>Heads up. This is actually free. No strings.</strong></p>
-            <p>We don't collect your email. We don't ask for your name.
-            Your answers don't get stored on any server, sent to any CRM,
-            or logged anywhere. Close this tab and there's no trace you
-            were ever here. Nothing gets emailed to you after.</p>
-            <p>Why do it this way? We're trying to help Canadian GCs
-            stop losing margin to the same process gaps year after year.
-            If what you see is useful, you know where to find us. If it
-            isn't, you're out 60 seconds. That's the whole deal.</p>
+            <p><strong>Free. No strings.</strong></p>
+            <p>No email, no name, no account. Your answers go to the AI
+            and that's it. Nothing stored, nothing sent to a CRM, nothing
+            emailed to you after. Close the tab and there's no trace you
+            were here.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -172,18 +168,17 @@ def render_landing() -> None:
         unsafe_allow_html=True,
     )
     st.markdown(
-        "A free AI self-assessment we built for Canadian GC owners thinking "
-        "about working with us. The score is pure math on your answers. The "
-        "breakdown is Claude Opus 4.7 reading what you said and telling you "
-        "what it means for your margin. No demo dressed up to make us look "
-        "good. Answer honest, get an honest read."
+        "A self-assessment for Canadian GC owners. The score is math on your "
+        "answers. The breakdown is Claude Opus 4.7 reading what you said and "
+        "telling you what it means for your margin. Answer honest, get an "
+        "honest read."
     )
     st.markdown(
         "What you walk away with depends on how tight or sloppy you run. A "
         "small shop with decent process might spot **\\$50K** in fixable "
         "leaks. A \\$100M shop with blind spots might see **\\$500K to "
         "\\$2M**. Either way, you leave with a number you didn't have "
-        "walking in. That's why this exists."
+        "walking in."
     )
 
     st.markdown(
@@ -233,10 +228,10 @@ def render_landing() -> None:
         "is easy to spot and small to contain, not buried in close-out."
     )
     st.markdown(
-        "That's what modern construction AI does. It doesn't stop weather. "
-        "It catches the leak weather caused before it hides in close-out. "
-        "**Shops that grow don't chase perfect jobs. They chase tight "
-        "process.**"
+        "That's what modern construction AI does. It doesn't stop the thing "
+        "that went sideways. It catches the margin hit before it buries "
+        "itself in close-out. **Shops that grow don't chase perfect jobs. "
+        "They chase tight process.**"
     )
 
     st.markdown(
@@ -265,18 +260,14 @@ def render_landing() -> None:
         "close-out, change orders, and labor tracking actually look like "
         "because it was built by people who run jobs. Not by a SaaS team "
         "that read a book about construction.\n"
-        "- **Fully anonymous.** No login, no name, no email, no account. "
-        "Nothing leaves your browser except the 10 answers going to the AI, "
-        "and even those don't get stored.\n"
-        "- **Risk reversal built in.** If the output doesn't name at least "
-        "one specific leak you could fix this week, book a free 15-minute "
-        "discovery call. We'll find it live, or we'll tell you straight "
-        "there's nothing to find. No pitch deck. No pressure.\n"
-        "- **The free preview of the paid software.** 60 seconds gets you a "
-        "score and three leaks. The paid software digs through your actual "
-        "closed jobs and typically finds **six to seven figures in "
-        "recoverable margin** on portfolios your size. The discovery call "
-        "shows you exactly how."
+        "- **If it doesn't name a real leak, book a call anyway.** If the "
+        "output doesn't flag one specific leak you could fix this week, "
+        "book a 15-minute discovery call. We'll find one live, or we'll "
+        "tell you straight there's nothing to find. No pitch deck.\n"
+        "- **This is a preview of the paid software.** 60 seconds gets you "
+        "a score and three leaks. The paid software digs through your "
+        "actual closed jobs and typically finds **six to seven figures in "
+        "recoverable margin** on portfolios your size."
     )
 
     # CTA block: skip-ahead to discovery call
@@ -304,9 +295,8 @@ def render_landing() -> None:
     )
 
     st.markdown(
-        "<div class='bmt-subhead' style='margin-top:1.8rem;'>Or start "
-        "the scorecard below. You're 60 seconds from knowing a number "
-        "that could be worth seven figures to you this year.</div>",
+        "<div class='bmt-subhead' style='margin-top:1.8rem;'>Or run the "
+        "scorecard below. Answer honest, get your number.</div>",
         unsafe_allow_html=True,
     )
     st.write("")
