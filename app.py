@@ -251,10 +251,11 @@ def render_landing() -> None:
         "otherwise is selling you something."
     )
     st.markdown(
-        "**The aim isn't perfect. The aim is airtight.** Make the process "
-        "as watertight as you can so when the variables hit, the leak is "
-        "measurable and containable, not mysterious and compounding into "
-        "the next job."
+        "**The aim is airtight. Nobody actually hits it. The shops that "
+        "grow just get closer than everyone else on the bid list.** Make "
+        "the process as watertight as you can so when the variables hit, "
+        "the leak is measurable and containable, not mysterious and "
+        "compounding into the next job."
     )
     st.markdown(
         "That's what modern AI and construction software do. They do not "
