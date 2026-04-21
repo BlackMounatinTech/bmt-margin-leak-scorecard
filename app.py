@@ -266,10 +266,16 @@ def render_landing() -> None:
         unsafe_allow_html=True,
     )
     st.markdown(
-        "- A **score out of 100** showing how bad the leak is, color-coded\n"
-        "- **3 specific leaks** tied to YOUR actual answers, not generic bullshit\n"
-        "- A **dollar range** sized to your revenue. What this costs you per year.\n"
-        "- A **one-line fix** for each leak you can start Monday"
+        "- A **score out of 100**, color-coded green to red, showing how "
+        "tight or leaky you run\n"
+        "- A **plain-English read** from Claude Opus 4.7 on what your "
+        "answers actually mean for your margin\n"
+        "- A **ballpark annual dollar leak**, sized to your revenue tier "
+        "(industry benchmark math, not your actual jobs)\n"
+        "- **3 to 5 specific leaks** tied to YOUR answers, each with a "
+        "**3-step Monday playbook** on how to close it\n"
+        "- A **clear next step** if you want the real number on your actual "
+        "closed jobs, not an industry benchmark"
     )
 
     st.markdown(
