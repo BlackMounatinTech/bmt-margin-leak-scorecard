@@ -258,10 +258,10 @@ def render_landing() -> None:
         "compounding into the next job."
     )
     st.markdown(
-        "That's what modern AI and construction software do. They do not "
-        "stop weather. They catch the leak the weather caused before it "
-        "hides in close-out. **The contractors who actually grow don't "
-        "chase perfect jobs. They chase tight process.**"
+        "That's what modern construction AI does. It doesn't stop the "
+        "weather. It catches the leak the weather caused before it hides "
+        "in close-out. **The contractors who actually grow don't chase "
+        "perfect jobs. They chase tight process.**"
     )
 
     st.markdown(
