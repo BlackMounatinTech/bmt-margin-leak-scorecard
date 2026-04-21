@@ -215,8 +215,9 @@ def render_landing() -> None:
     )
     st.markdown(
         "Profit you should have kept that walks out through small cracks in "
-        "how you run your jobs. Each one's small. Annually they're a six or "
-        "seven figure hole. A few you'll recognize:"
+        "how you run your jobs. Each one's small on its own. Stack them "
+        "across a year of jobs and those small holes total **six or seven "
+        "figures**. A few you'll recognize:"
     )
     st.markdown(
         "- **Change orders approved and never invoiced.** Signed off on site. "
