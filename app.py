@@ -127,14 +127,13 @@ def render_landing() -> None:
     st.markdown("# Margin Leak Scorecard")
     st.markdown("<hr class='bmt-hero-rule'/>", unsafe_allow_html=True)
     st.markdown(
-        "<div class='bmt-subhead'>Answer 10 questions. Get an AI read on "
-        "where your jobs are leaking margin. 60 seconds.</div>",
+        "<div class='bmt-subhead'>10 questions about your company. A free "
+        "audit from artificial intelligence.</div>",
         unsafe_allow_html=True,
     )
     st.markdown(
-        "<div class='bmt-privacy-note'><strong>Free. No signup. No email.</strong> "
-        "Most sites like this make you trade an email for the result. We don't. "
-        "Run it, get your score, close the tab.</div>",
+        "<div class='bmt-privacy-note'><strong>Completely free.</strong> "
+        "No email, no signup, no annoying emails after the fact.</div>",
         unsafe_allow_html=True,
     )
     st.write("")
