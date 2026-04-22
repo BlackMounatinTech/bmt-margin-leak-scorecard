@@ -140,7 +140,7 @@ def render_landing() -> None:
 
 
 def render_details_expander() -> None:
-    with st.expander("What this is, why it exists, what you get"):
+    with st.expander("More about this scorecard"):
         st.markdown(
             "Most Canadian GCs, from \\$5M to \\$500M+, are bleeding "
             "**3% to 8% of annual revenue** before close-out even hits. "
