@@ -127,179 +127,151 @@ def render_landing() -> None:
     st.markdown("# Margin Leak Scorecard")
     st.markdown("<hr class='bmt-hero-rule'/>", unsafe_allow_html=True)
     st.markdown(
-        "<div class='bmt-subhead'>Find out in 60 seconds how much money is "
-        "walking out the door on every job you close. Sized to your company.</div>",
-        unsafe_allow_html=True,
-    )
-
-    # Privacy callout — sits above the fold so skimmers see it first.
-    st.markdown(
-        """
-        <div class="bmt-privacy-note">
-            <p><strong>Free. No strings.</strong></p>
-            <p>No email, no name, no account. Your answers go to the AI
-            and that's it. Nothing stored, nothing sent to a CRM, nothing
-            emailed to you after. Close the tab and there's no trace you
-            were here.</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        "Most Canadian GCs, from \\$5M to \\$500M+, are bleeding **3% to 8% of "
-        "annual revenue** before close-out even hits. That number scales with "
-        "you:"
-    )
-    st.markdown(
-        "- **\\$15M shop:** \\$300K to \\$900K a year\n"
-        "- **\\$50M shop:** \\$1.5M to \\$4M a year\n"
-        "- **\\$150M shop:** \\$3M to \\$15M a year\n"
-        "- **\\$500M+:** seven to eight figures annually"
-    )
-    st.markdown(
-        "Procore won't flag it. Your PMs say everything's green. Then Q4 closes, "
-        "margin's down two points, and nobody can point to where it went. "
-        "**This scorecard tells you where.**"
-    )
-
-    st.markdown(
-        "<div class='bmt-section-heading' style='margin-top:1.5rem;'>What this actually is</div>",
+        "<div class='bmt-subhead'>Answer 10 questions. Get an AI read on "
+        "where your jobs are leaking margin. 60 seconds.</div>",
         unsafe_allow_html=True,
     )
     st.markdown(
-        "A self-assessment for Canadian GC owners. The score is math on your "
-        "answers. The breakdown is Claude Opus 4.7 reading what you said and "
-        "telling you what it means for your margin. Answer honest, get an "
-        "honest read."
-    )
-    st.markdown(
-        "What you walk away with depends on how tight or sloppy you run. A "
-        "small shop with decent process might spot **\\$50K** in fixable "
-        "leaks. A \\$100M shop with blind spots might see **\\$500K to "
-        "\\$2M**. Either way, you leave with a number you didn't have "
-        "walking in."
-    )
-
-    st.markdown(
-        "<div class='bmt-section-heading' style='margin-top:1.5rem;'>What margin leak actually means</div>",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        "Profit you should have kept that walks out through small cracks in "
-        "how you run your jobs. Each one's small on its own. Stack them "
-        "across a year of jobs and those small holes total **six or seven "
-        "figures**. A few you'll recognize:"
-    )
-    st.markdown(
-        "- **Change orders approved and never invoiced.** Signed off on site. "
-        "Never made it to the pay app.\n"
-        "- **Field extras done as a favor.** Your PM said \"no problem, we'll "
-        "take care of it.\" Now you're eating the cost.\n"
-        "- **Labor blowouts found at close-out.** Crew was 40% over estimate "
-        "by week 2. Nobody flagged it until the job closed.\n"
-        "- **Subcontractor backcharges you never pushed.** You ate someone "
-        "else's screw-up because the paperwork was annoying.\n"
-        "- **Schedule slips that compound.** Same wall opened three times "
-        "because trades weren't sequenced.\n"
-        "- **Rental equipment rolling past the need-by date.** Excavator's "
-        "been on site two weeks longer than the schedule. Nobody called it in.\n"
-        "- **Material waste nobody logs.** Damaged, stolen, miscounted, "
-        "double-paid.\n"
-        "- **Holdback released and never invoiced back.** Job closed, "
-        "retention paid out, final invoice never issued.\n"
-        "- **Procurement price drift.** Supplier quoted one price, billed "
-        "another, nobody audited."
-    )
-
-    st.markdown(
-        "<div class='bmt-section-heading' style='margin-top:1.5rem;'>The honest truth about leaks</div>",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        "You'll never hit zero. Construction has variables. Weather hits. "
-        "Subs no-show. Material prices move mid-job. Bids break. That's "
-        "the reality of the trades, and anyone telling you otherwise is "
-        "selling you something."
-    )
-    st.markdown(
-        "**The aim is airtight. Nobody actually hits it.** Make your "
-        "process as tight as you can so when things go sideways, the leak "
-        "is easy to spot and small to contain, not buried in close-out."
-    )
-    st.markdown(
-        "That's what modern construction AI does. It doesn't stop the thing "
-        "that went sideways. It catches the margin hit before it buries "
-        "itself in close-out. **Shops that grow don't chase perfect jobs. "
-        "They chase tight process.**"
-    )
-
-    st.markdown(
-        "<div class='bmt-section-heading' style='margin-top:1.5rem;'>What you get in 60 seconds</div>",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        "- A **score out of 100**, color-coded green to red, showing how "
-        "tight or leaky you run\n"
-        "- A **plain-English read** from Claude Opus 4.7 on what your "
-        "answers actually mean for your margin\n"
-        "- A **ballpark annual dollar leak**, sized to your revenue tier "
-        "(industry benchmark math, not your actual jobs)\n"
-        "- **3 to 5 specific leaks** tied to YOUR answers, each with a "
-        "**3-step Monday playbook** on how to close it\n"
-        "- A **clear next step** if you want the real number on your actual "
-        "closed jobs, not an industry benchmark"
-    )
-
-    st.markdown(
-        "<div class='bmt-section-heading' style='margin-top:1.5rem;'>Why this isn't a waste of your time</div>",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        "- **Built by contractors for contractors.** The AI knows what "
-        "close-out, change orders, and labor tracking actually look like "
-        "because it was built by people who run jobs. Not by a SaaS team "
-        "that read a book about construction.\n"
-        "- **If it doesn't name a real leak, book a call anyway.** If the "
-        "output doesn't flag one specific leak you could fix this week, "
-        "book a 15-minute discovery call. We'll find one live, or we'll "
-        "tell you straight there's nothing to find. No pitch deck.\n"
-        "- **This is a preview of the paid software.** 60 seconds gets you "
-        "a score and three leaks. The paid software digs through your "
-        "actual closed jobs and typically finds **six to seven figures in "
-        "recoverable margin** on portfolios your size."
-    )
-
-    # CTA block: skip-ahead to discovery call
-    st.markdown(
-        "<div class='bmt-section-heading' style='margin-top:1.6rem;'>"
-        "Already know you want to talk?</div>",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        "Skip the scorecard. Book a 15-minute discovery call. I'll walk you "
-        "through what the paid software does on your actual closed jobs, "
-        "live, no form."
-    )
-    top_subject = quote("Discovery call request · Margin Leak Scorecard")
-    top_body = quote(
-        "Hi Michael,\n\n"
-        "I'd like to book a 15-minute discovery call to see the Black "
-        "Mountain Technologies software.\n\n"
-        "Thanks."
-    )
-    st.link_button(
-        "Book a 15-minute discovery call",
-        f"mailto:{CONTACT_EMAIL}?subject={top_subject}&body={top_body}",
-        use_container_width=True,
-    )
-
-    st.markdown(
-        "<div class='bmt-subhead' style='margin-top:1.8rem;'>Or run the "
-        "scorecard below. Answer honest, get your number.</div>",
+        "<div class='bmt-privacy-note'><strong>Free. No signup. No email.</strong> "
+        "Most sites like this make you trade an email for the result. We don't. "
+        "Run it, get your score, close the tab.</div>",
         unsafe_allow_html=True,
     )
     st.write("")
+
+
+def render_details_expander() -> None:
+    with st.expander("What this is, why it exists, what you get"):
+        st.markdown(
+            "Most Canadian GCs, from \\$5M to \\$500M+, are bleeding "
+            "**3% to 8% of annual revenue** before close-out even hits. "
+            "That number scales with you:"
+        )
+        st.markdown(
+            "- **\\$15M shop:** \\$300K to \\$900K a year\n"
+            "- **\\$50M shop:** \\$1.5M to \\$4M a year\n"
+            "- **\\$150M shop:** \\$3M to \\$15M a year\n"
+            "- **\\$500M+:** seven to eight figures annually"
+        )
+        st.markdown(
+            "Procore won't flag it. Your PMs say everything's green. Then "
+            "Q4 closes, margin's down two points, and nobody can point to "
+            "where it went. **This scorecard tells you where.**"
+        )
+
+        st.markdown(
+            "<div class='bmt-section-heading' style='margin-top:1.2rem;'>What margin leak actually means</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "Profit you should have kept that walks out through small "
+            "cracks in how you run your jobs. Each one's small on its own. "
+            "Stack them across a year of jobs and those small holes total "
+            "**six or seven figures**. A few you'll recognize:"
+        )
+        st.markdown(
+            "- **Change orders approved and never invoiced.** Signed off "
+            "on site. Never made it to the pay app.\n"
+            "- **Field extras done as a favor.** Your PM said \"no problem, "
+            "we'll take care of it.\" Now you're eating the cost.\n"
+            "- **Labor blowouts found at close-out.** Crew was 40% over "
+            "estimate by week 2. Nobody flagged it until the job closed.\n"
+            "- **Subcontractor backcharges you never pushed.** You ate "
+            "someone else's screw-up because the paperwork was annoying.\n"
+            "- **Schedule slips that compound.** Same wall opened three "
+            "times because trades weren't sequenced.\n"
+            "- **Rental equipment rolling past the need-by date.** "
+            "Excavator's been on site two weeks longer than the schedule. "
+            "Nobody called it in.\n"
+            "- **Material waste nobody logs.** Damaged, stolen, miscounted, "
+            "double-paid.\n"
+            "- **Holdback released and never invoiced back.** Job closed, "
+            "retention paid out, final invoice never issued.\n"
+            "- **Procurement price drift.** Supplier quoted one price, "
+            "billed another, nobody audited."
+        )
+
+        st.markdown(
+            "<div class='bmt-section-heading' style='margin-top:1.2rem;'>The honest truth about leaks</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "You'll never hit zero. Construction has variables. Weather "
+            "hits. Subs no-show. Material prices move mid-job. Bids break. "
+            "That's the reality of the trades, and anyone telling you "
+            "otherwise is selling you something."
+        )
+        st.markdown(
+            "**The aim is airtight. Nobody actually hits it.** Make your "
+            "process as tight as you can so when things go sideways, the "
+            "leak is easy to spot and small to contain, not buried in "
+            "close-out."
+        )
+        st.markdown(
+            "That's what modern construction AI does. It doesn't stop the "
+            "thing that went sideways. It catches the margin hit before it "
+            "buries itself in close-out. **Shops that grow don't chase "
+            "perfect jobs. They chase tight process.**"
+        )
+
+        st.markdown(
+            "<div class='bmt-section-heading' style='margin-top:1.2rem;'>What you get in 60 seconds</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "- A **score out of 100**, color-coded green to red, showing "
+            "how tight or leaky you run\n"
+            "- A **plain-English read** from Claude Opus 4.7 on what your "
+            "answers actually mean for your margin\n"
+            "- A **ballpark annual dollar leak**, sized to your revenue "
+            "tier (industry benchmark math, not your actual jobs)\n"
+            "- **3 to 5 specific leaks** tied to YOUR answers, each with a "
+            "**3-step Monday playbook** on how to close it\n"
+            "- A **clear next step** if you want the real number on your "
+            "actual closed jobs, not an industry benchmark"
+        )
+
+        st.markdown(
+            "<div class='bmt-section-heading' style='margin-top:1.2rem;'>Why this isn't a waste of your time</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "- **Built by contractors for contractors.** The AI knows what "
+            "close-out, change orders, and labor tracking actually look "
+            "like because it was built by people who run jobs. Not by a "
+            "SaaS team that read a book about construction.\n"
+            "- **If it doesn't name a real leak, book a call anyway.** If "
+            "the output doesn't flag one specific leak you could fix this "
+            "week, book a 15-minute discovery call. We'll find one live, "
+            "or we'll tell you straight there's nothing to find. No pitch "
+            "deck.\n"
+            "- **This is a preview of the paid software.** 60 seconds gets "
+            "you a score and three leaks. The paid software digs through "
+            "your actual closed jobs and typically finds **six to seven "
+            "figures in recoverable margin** on portfolios your size."
+        )
+
+        st.markdown(
+            "<div class='bmt-section-heading' style='margin-top:1.2rem;'>Rather just talk?</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "Skip the scorecard. Book a 15-minute discovery call. I'll "
+            "walk you through what the paid software does on your actual "
+            "closed jobs, live, no form."
+        )
+        top_subject = quote("Discovery call request · Margin Leak Scorecard")
+        top_body = quote(
+            "Hi Michael,\n\n"
+            "I'd like to book a 15-minute discovery call to see the Black "
+            "Mountain Technologies software.\n\n"
+            "Thanks."
+        )
+        st.link_button(
+            "Book a 15-minute discovery call",
+            f"mailto:{CONTACT_EMAIL}?subject={top_subject}&body={top_body}",
+            use_container_width=True,
+        )
 
 
 def render_form() -> tuple[bool, dict]:
@@ -524,6 +496,7 @@ if "result" in st.session_state:
 else:
     render_landing()
     submitted, payload = render_form()
+    render_details_expander()
 
     if submitted:
         errs = validate(payload["answers"])
