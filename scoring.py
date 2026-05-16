@@ -38,9 +38,9 @@ SCALE_1_5_LABELS = {
     },
     "q4": {
         1: "Never",
-        2: "More than a year ago",
-        3: "6-12 months ago",
-        4: "Within the last 6 months",
+        2: "Rarely",
+        3: "Sometimes",
+        4: "After most jobs",
         5: "After every job",
     },
     "q5": {
@@ -77,7 +77,7 @@ QUESTIONS = [
     },
     {
         "id": "q4",
-        "text": "When was the last time you sat down and reviewed a closed job to see where the money actually went?",
+        "text": "How often do you analyze job data after a job is closed out?",
         "kind": "scale_1_5",
     },
     {
