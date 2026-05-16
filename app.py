@@ -19,6 +19,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 import streamlit as st
+import streamlit.components.v1 as components
 from dotenv import load_dotenv
 
 from scoring import (
@@ -361,6 +362,13 @@ def validate(answers: dict) -> list[str]:
 def render_result(score: dict, ai: dict) -> None:
     tier = score["tier"]
     color = tier["color"]
+
+    # Scroll the parent window to the top so users land on the score,
+    # not wherever they were scrolled when they hit submit.
+    components.html(
+        "<script>setTimeout(() => window.parent.scrollTo({top:0, behavior:'instant'}), 0);</script>",
+        height=0,
+    )
 
     st.markdown(
         "<div class='bmt-tagline'>Your scorecard</div>",
