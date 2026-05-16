@@ -373,10 +373,25 @@ def render_result(score: dict, ai: dict) -> None:
     tier = score["tier"]
     color = tier["color"]
 
-    # Scroll the parent window to the top so users land on the score,
-    # not wherever they were scrolled when they hit submit.
+    # Scroll the topmost browser window to the top so users land on the
+    # score, not wherever they were scrolled when they hit submit.
+    # components.html runs inside a nested iframe, so we try every parent
+    # frame and retry with delays to catch the DOM-not-ready case.
     components.html(
-        "<script>setTimeout(() => window.parent.scrollTo({top:0, behavior:'instant'}), 0);</script>",
+        """
+        <script>
+            function scrollAll() {
+                var targets = [window, window.parent, window.parent.parent, window.top];
+                targets.forEach(function(w) {
+                    try { w.scrollTo(0, 0); } catch (e) {}
+                });
+            }
+            scrollAll();
+            setTimeout(scrollAll, 50);
+            setTimeout(scrollAll, 200);
+            setTimeout(scrollAll, 500);
+        </script>
+        """,
         height=0,
     )
 
