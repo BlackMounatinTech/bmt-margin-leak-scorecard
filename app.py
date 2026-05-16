@@ -50,7 +50,7 @@ except Exception:
     pass
 
 CONTACT_EMAIL = "michael@blackmountaintechnologies.ca"
-CONTACT_PHONE = os.environ.get("CONTACT_PHONE", "").strip()
+CONTACT_PHONE = os.environ.get("CONTACT_PHONE", "250-254-2377").strip()
 FORMSPREE_ENDPOINT = os.environ.get("FORMSPREE_ENDPOINT", "").strip()
 CALENDAR_URL = os.environ.get("CALENDAR_URL", "").strip()
 
@@ -589,9 +589,10 @@ def render_result(score: dict, ai: dict) -> None:
                         )
 
         with contact_col:
+            tel_digits = "".join(c for c in CONTACT_PHONE if c.isdigit())
             phone_html = (
-                f"<div class='bmt-contact-row'>Or call: "
-                f"<strong>{CONTACT_PHONE}</strong></div>"
+                f"<div class='bmt-contact-row'>Or call:<br/>"
+                f"<a href='tel:{tel_digits}'><strong>{CONTACT_PHONE}</strong></a></div>"
                 if CONTACT_PHONE else ""
             )
             st.markdown(
@@ -599,7 +600,8 @@ def render_result(score: dict, ai: dict) -> None:
                 <div class="bmt-contact-card">
                     <div class="bmt-contact-label">Reach me directly</div>
                     <div class="bmt-contact-row">
-                        Email:<br/><strong>{CONTACT_EMAIL}</strong>
+                        Email:<br/>
+                        <a href="mailto:{CONTACT_EMAIL}"><strong>{CONTACT_EMAIL}</strong></a>
                     </div>
                     {phone_html}
                     <div class="bmt-contact-row" style="margin-top:14px;font-style:italic;color:var(--text-secondary);font-size:13px;">

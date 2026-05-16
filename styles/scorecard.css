@@ -431,6 +431,13 @@
     color: var(--text-heading);
     font-weight: 600;
 }
+.bmt-contact-card a {
+    color: var(--brand-accent);
+    text-decoration: none;
+}
+.bmt-contact-card a:hover {
+    text-decoration: underline;
+}
 
 /* ── Footer ───────────────────────────────────────────────────── */
 .bmt-footer {
