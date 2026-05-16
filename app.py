@@ -494,8 +494,8 @@ if "result" in st.session_state:
     )
 else:
     render_landing()
-    submitted, payload = render_form()
     render_details_expander()
+    submitted, payload = render_form()
 
     if submitted:
         errs = validate(payload["answers"])
