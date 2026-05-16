@@ -77,7 +77,7 @@ QUESTIONS = [
     },
     {
         "id": "q4",
-        "text": "When was the last time you ran a full post-mortem on a closed job?",
+        "text": "When was the last time you sat down and reviewed a closed job to see where the money actually went?",
         "kind": "scale_1_5",
     },
     {
