@@ -161,9 +161,10 @@ def render_details_expander() -> None:
             "leak gets expensive and when a read like this pays for itself."
         )
         st.markdown(
-            "Procore won't flag it. Your PMs say everything's green. Then "
-            "Q4 closes, margin is down two points, and nobody can point to "
-            "where it went. **This scorecard tells you where.**"
+            "Procore will not flag it. Your PMs tell you every job is on "
+            "track. Then Q4 closes, your margin is down two points, and "
+            "nobody can tell you where the money went. **This scorecard "
+            "tells you where.**"
         )
 
         st.markdown(
@@ -171,10 +172,10 @@ def render_details_expander() -> None:
             unsafe_allow_html=True,
         )
         st.markdown(
-            "Profit you should have kept that walks out through small "
-            "cracks in how you run your jobs. Each one's small on its own. "
-            "Stack them across a year of jobs and those small holes total "
-            "**six or seven figures**. A few you'll recognize:"
+            "Margin leak is money you should have kept on your jobs. You "
+            "lose it through small gaps in how the work runs. Each gap is "
+            "small on its own. Add them up across a year of jobs and the "
+            "total is **six figures or more**. A few you will recognize:"
         )
         st.markdown(
             "- **Change orders approved and never invoiced.** Signed off "
@@ -203,22 +204,24 @@ def render_details_expander() -> None:
             unsafe_allow_html=True,
         )
         st.markdown(
-            "You'll never hit zero. Construction has variables. Weather "
-            "hits. Subs no-show. Material prices move mid-job. Bids break. "
-            "That's the reality of the trades, and anyone telling you "
-            "otherwise is selling you something."
+            "You will always lose some margin. Construction has too many "
+            "variables. Weather changes. Subs do not show up. Material "
+            "prices move in the middle of a job. Bids miss the mark. That "
+            "is the reality of the work. Anyone who tells you different "
+            "is selling you something."
         )
         st.markdown(
-            "**The aim is airtight. Nobody actually hits it.** Make your "
-            "process as tight as you can so when things go sideways, the "
-            "leak is easy to spot and small to contain, not buried in "
+            "**Aim for zero leak. Nobody actually gets there.** Make your "
+            "process as tight as you can so when something goes wrong, "
+            "the leak is easy to find and small to fix. Not buried at "
             "close-out."
         )
         st.markdown(
-            "That's what modern construction AI does. It doesn't stop the "
-            "thing that went sideways. It catches the margin hit before it "
-            "buries itself in close-out. **Shops that grow don't chase "
-            "perfect jobs. They chase tight process.**"
+            "That is what modern construction AI does. It does not stop "
+            "the thing from going wrong. It catches the dollar impact "
+            "while you can still fix it, before close-out hides it. "
+            "**Shops that grow do not chase perfect jobs. They build a "
+            "tight process.**"
         )
 
         st.markdown(
@@ -226,16 +229,17 @@ def render_details_expander() -> None:
             unsafe_allow_html=True,
         )
         st.markdown(
-            "- A **score out of 100**, color-coded green to red, showing "
-            "how tight or leaky you run\n"
+            "- A **score out of 100**, color-coded green to red, that "
+            "shows how tight or leaky your operation is\n"
             "- A **plain-English read** from Claude Opus 4.7 on what your "
-            "answers actually mean for your margin\n"
-            "- A **ballpark annual dollar leak**, sized to your revenue "
-            "tier (industry benchmark math, not your actual jobs)\n"
-            "- **3 to 5 specific leaks** tied to YOUR answers, each with a "
-            "**3-step Monday playbook** on how to close it\n"
+            "answers mean for your margin\n"
+            "- A **rough estimate of your annual dollar leak**, based on "
+            "your revenue tier and industry benchmarks (not your actual "
+            "jobs)\n"
+            "- **3 to 5 specific leaks** tied to your answers, each with a "
+            "**3-step plan you can start this week**\n"
             "- A **clear next step** if you want the real number on your "
-            "actual closed jobs, not an industry benchmark"
+            "actual closed jobs, not an industry estimate"
         )
 
         st.markdown(
@@ -362,7 +366,7 @@ def render_result(score: dict, ai: dict) -> None:
         "<div class='bmt-tagline'>Your scorecard</div>",
         unsafe_allow_html=True,
     )
-    st.markdown("# Your Margin Leak Read")
+    st.markdown("# Your Margin Leak Results")
 
     st.markdown(
         f"""
@@ -435,7 +439,7 @@ def render_result(score: dict, ai: dict) -> None:
                 )
                 how_html = (
                     f"<div class='bmt-plan-how'>"
-                    f"  <div class='bmt-plan-how-label'>Playbook</div>"
+                    f"  <div class='bmt-plan-how-label'>3-step plan</div>"
                     f"  <ol class='bmt-plan-how-list'>{steps_html}</ol>"
                     f"</div>"
                 )
@@ -454,8 +458,8 @@ def render_result(score: dict, ai: dict) -> None:
         st.markdown(
             f"""
             <div class="bmt-plan-block">
-                <div class="bmt-plan-label">IN PLAIN ENGLISH · WHAT TO DO MONDAY</div>
-                <div class="bmt-plan-heading">Here's how to stop the leak. Start this week.</div>
+                <div class="bmt-plan-label">WHAT TO DO THIS WEEK</div>
+                <div class="bmt-plan-heading">Here is how to stop the leak. Start this week.</div>
                 {items_html}
             </div>
             """,
@@ -480,10 +484,10 @@ def render_result(score: dict, ai: dict) -> None:
             <div class="bmt-cta-body">
                 What you just read is a quick overview based on 10 answers.
                 The full Company Autopsy from our Cost Overrun Solution
-                software runs on your actual closed jobs. We pull a real
-                job, walk the numbers with you, and show you exactly where
-                the margin went and how to get it back on your bottom line.
-                15 minutes. No deck. No pressure.
+                software runs on your actual closed jobs. We take a real
+                job, go through the numbers with you, and show you exactly
+                where the margin went and how to get it back.
+                15 minutes. No pitch deck. No pressure.
             </div>
         </div>
         """,
@@ -498,8 +502,8 @@ def render_result(score: dict, ai: dict) -> None:
 
     if ai.get("_error"):
         st.info(
-            "Heads up. The AI breakdown fell back to a generic version because of "
-            f"an error. `{ai['_error']}`."
+            "Heads up. The AI breakdown could not run, so this page is "
+            f"showing a generic version. `{ai['_error']}`."
         )
 
     st.write("")

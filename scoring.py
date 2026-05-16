@@ -140,10 +140,10 @@ TIERS = [
     {
         "min": 80,
         "max": 100,
-        "name": "Tight Ship",
+        "name": "Tight Operation",
         "color": "#10b981",
         "emoji_label": "GREEN",
-        "blurb": "You're running lean. There's still money to find, but you're already ahead of most.",
+        "blurb": "You are running a tight operation. Very little money is leaking. There is still some to find.",
     },
     {
         "min": 60,
@@ -151,7 +151,7 @@ TIERS = [
         "name": "Some Leakage",
         "color": "#eab308",
         "emoji_label": "YELLOW",
-        "blurb": "You've got the basics, but there are specific places margin is walking out the door.",
+        "blurb": "You are losing money in a few specific parts of your operation. Each leak is small. Over a year they add up.",
     },
     {
         "min": 40,
@@ -159,7 +159,7 @@ TIERS = [
         "name": "Significant Leakage",
         "color": "#f97316",
         "emoji_label": "ORANGE",
-        "blurb": "You're bleeding margin in multiple areas. The good news: it's recoverable.",
+        "blurb": "You are losing money in several parts of your operation. The good news is the money is recoverable.",
     },
     {
         "min": 0,
@@ -167,7 +167,7 @@ TIERS = [
         "name": "Critical Leakage",
         "color": "#ef4444",
         "emoji_label": "RED",
-        "blurb": "This is serious. You're losing six figures or more annually and don't have visibility into where.",
+        "blurb": "You are losing six figures or more every year. You cannot see where it is going.",
     },
 ]
 
@@ -334,15 +334,15 @@ def _fallback_result(tier: dict[str, Any], raw_text: str | None = None) -> dict[
     return {
         "headline": tier["blurb"],
         "score_summary": (
-            "We couldn't render the full AI breakdown this time. The short version: "
+            "The full AI breakdown could not run this time. The short version: "
             + tier["blurb"]
-            + " Book a 15-minute discovery call for a proper forensic read."
+            + " Book a 15-minute autopsy walkthrough for the full read on your numbers."
         ),
         "estimated_dollar_range": "",
         "plain_english_plan": [
             {
-                "do": "Track labor hours every single day on every active job.",
-                "why": "You log hours in a spreadsheet after the week is done, so you find out about a budget blow a week too late to fix it.",
+                "do": "Track labor hours every day on every active job.",
+                "why": "You are losing money on labor overruns because hours are logged in a spreadsheet after the week is over. By then it is too late to fix.",
                 "how": [
                     "Pick your 2 biggest active jobs to start.",
                     "Give each foreman a phone or tablet to log hours at the end of every shift.",
@@ -350,21 +350,21 @@ def _fallback_result(tier: dict[str, Any], raw_text: str | None = None) -> dict[
                 ],
             },
             {
-                "do": "Sit down for 30 minutes after every closed job and write what cost more than planned.",
-                "why": "You have not done this in over a year, so the same leak keeps showing up on the next job.",
+                "do": "Sit down for 30 minutes after every closed job and write down what cost more than planned.",
+                "why": "You are losing money on the same problems every job because nobody is reviewing what went wrong after each one.",
                 "how": [
                     "Block 30 minutes on your calendar the day after every substantial completion.",
-                    "Pull the final budget vs actual from your accountant before the meeting.",
+                    "Get the final budget vs actual from your accountant before the meeting.",
                     "Write down the top 3 overruns, the root cause of each, and share with PMs before the next bid.",
                 ],
             },
             {
                 "do": "Before you sign any change order, write down which invoice it will go on.",
-                "why": "Change orders get approved on site and forgotten. Scope built, invoice never raised. Pure margin, gone.",
+                "why": "You are losing money on change orders because the work gets done on site, the paperwork gets forgotten, and the invoice never goes out.",
                 "how": [
-                    "Add one line to your CO form: 'Invoice number for billing.'",
+                    "Add one line to your change order form: 'Invoice number for billing.'",
                     "Require the PM to fill it in before signing.",
-                    "Have accounting reconcile every CO to its invoice monthly.",
+                    "Have accounting match every change order to its invoice once a month.",
                 ],
             },
         ],
