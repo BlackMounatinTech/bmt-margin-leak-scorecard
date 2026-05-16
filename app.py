@@ -153,12 +153,12 @@ def render_details_expander() -> None:
             "- **\\$25M-\\$40M shop:** \\$500K to \\$1.6M a year"
         )
         st.markdown(
-            "The sweet spot is the company in the middle of that range. "
-            "The owner is no longer making every decision personally. New "
-            "executives are stepping in. More projects are running than "
-            "ever. The systems that worked at \\$5M start cracking. That "
-            "is exactly when margin leak gets expensive and exactly when "
-            "this matters most."
+            "This matters most for companies somewhere between \\$10M and "
+            "\\$30M. That is the stage where the owner stops making every "
+            "call personally and new executives start stepping in. More "
+            "projects are running at once than ever. The simple systems "
+            "that worked at \\$5M start cracking. That is when margin "
+            "leak gets expensive and when a read like this pays for itself."
         )
         st.markdown(
             "Procore won't flag it. Your PMs say everything's green. Then "
