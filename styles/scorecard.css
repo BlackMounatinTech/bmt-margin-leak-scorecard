@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────────────────────────
    Margin Leak Scorecard — scorecard-specific components.
-   Extends styles/theme.css (BMT v3.0 dark). Tokens from :root there.
+   Light theme: white + beige + light blue. Tokens from theme.css.
    ───────────────────────────────────────────────────────────────── */
 
 /* ── Centered single-column layout ────────────────────────────── */
@@ -11,9 +11,9 @@
 
 /* ── Privacy note (top of landing, trust-building, subtle) ───── */
 .bmt-privacy-note {
-    background: rgba(226, 232, 240, 0.03);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--text-secondary);
+    background: #eaf2fb;
+    border: 1px solid #cfe1f7;
+    border-left: 3px solid var(--active-border);
     border-radius: 10px;
     padding: 14px 18px;
     margin: 14px 0 22px 0;
@@ -130,7 +130,7 @@
     min-width: 80px;
 }
 
-/* ── Primary buttons — brand orange ──────────────────────────── */
+/* ── Primary buttons — saturated blue on light bg ────────────── */
 .stButton > button,
 .stDownloadButton > button,
 .stFormSubmitButton > button,
@@ -144,16 +144,16 @@
     font-weight: 700 !important;
     letter-spacing: 0.02em !important;
     transition: all 0.2s ease !important;
-    box-shadow: 0 2px 8px rgba(255,107,53,0.18) !important;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.18) !important;
 }
 .stButton > button:hover,
 .stDownloadButton > button:hover,
 .stFormSubmitButton > button:hover,
 .stLinkButton > a:hover {
-    background: #ff5a1f !important;
-    border-color: #ff5a1f !important;
+    background: #1d4ed8 !important;
+    border-color: #1d4ed8 !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 14px rgba(255,107,53,0.28) !important;
+    box-shadow: 0 4px 14px rgba(37,99,235,0.28) !important;
     transform: translateY(-1px);
 }
 
@@ -264,9 +264,9 @@
     color: var(--brand-accent);
 }
 
-/* ── Estimated-leak callout — BMT brand orange pattern ───────── */
+/* ── Estimated-leak callout — light blue pattern ─────────────── */
 .bmt-callout {
-    background: linear-gradient(135deg, rgba(255,107,53,0.09) 0%, rgba(255,107,53,0.03) 100%);
+    background: linear-gradient(135deg, #eaf2fb 0%, #f5f9fe 100%);
     border-left: 3px solid var(--brand-accent);
     border-radius: 8px;
     padding: 14px 18px;
@@ -382,10 +382,10 @@
     margin: 0;
 }
 
-/* ── Bottom reinforcing CTA block (brand orange) ─────────────── */
+/* ── Bottom reinforcing CTA block (blue) ─────────────────────── */
 .bmt-cta-block {
-    background: linear-gradient(135deg, rgba(255,107,53,0.09) 0%, rgba(255,107,53,0.03) 100%);
-    border: 1px solid rgba(255,107,53,0.35);
+    background: linear-gradient(135deg, #eaf2fb 0%, #f5f9fe 100%);
+    border: 1px solid #cfe1f7;
     border-left: 4px solid var(--brand-accent);
     border-radius: 12px;
     padding: 18px 22px;

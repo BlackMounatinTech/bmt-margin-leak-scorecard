@@ -1,45 +1,45 @@
 /* ─────────────────────────────────────────────────────────────────
-   BMT Design System v3.0 — base theme
-   Canonical: /Users/michaelmackrell/BMT_Shared/DESIGN_SYSTEM.md v3.0
-   Dark everywhere. Streamlit default font (no custom import).
-   Blue active. Orange brand. RAG for status.
+   Margin Leak Scorecard — light theme (scorecard-only override).
+   White + beige + light blue palette for the public lead magnet.
+   Diverges from BMT v3.0 dark intentionally — this is the
+   front-door audience, not the in-product audience.
    ───────────────────────────────────────────────────────────────── */
 
 :root {
     /* Backgrounds */
-    --bg-app: #0a0f1a;
-    --bg-sidebar: #0d1321;
-    --bg-card: #111827;
-    --bg-card-alt: #1a1f2e;
-    --bg-card-accent: #1e293b;
+    --bg-app: #fbfaf7;          /* warm off-white page */
+    --bg-sidebar: #f5efe6;      /* warm beige */
+    --bg-card: #ffffff;         /* pure white cards */
+    --bg-card-alt: #f5efe6;     /* beige hover/selected */
+    --bg-card-accent: #eaf2fb;  /* light blue tint */
 
     /* Borders */
-    --border: #1e293b;
-    --border-hover: #334155;
+    --border: #e8e0d0;          /* warm beige border */
+    --border-hover: #93c5fd;    /* light blue on hover */
 
     /* Text */
-    --text-heading: #f1f5f9;
-    --text-body: #cbd5e1;
-    --text-value: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --text-tertiary: #64748b;
+    --text-heading: #1a2332;    /* deep navy */
+    --text-body: #3a4456;       /* slate body */
+    --text-value: #1a2332;
+    --text-secondary: #5a6478;
+    --text-tertiary: #8290a4;
 
     /* Interactive */
     --active-border: #3b82f6;
 
     /* Brand */
-    --brand-accent: #ff6b35;
+    --brand-accent: #2563eb;    /* swap orange for saturated blue on light bg */
 
-    /* RAG */
-    --rag-green: #22c55e;
-    --rag-yellow: #f59e0b;
-    --rag-red: #ef4444;
+    /* RAG (slightly more saturated for legibility on white) */
+    --rag-green: #10b981;
+    --rag-yellow: #d97706;
+    --rag-red: #dc2626;
 
     /* Severity */
-    --sev-critical: #ef4444;
-    --sev-high: #f59e0b;
+    --sev-critical: #dc2626;
+    --sev-high: #d97706;
     --sev-medium: #3b82f6;
-    --sev-low: #64748b;
+    --sev-low: #8290a4;
 }
 
 /* ── Global shell ──────────────────────────────────────────────── */
