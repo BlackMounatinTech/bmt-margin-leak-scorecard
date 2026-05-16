@@ -142,19 +142,27 @@ def render_landing() -> None:
 def render_details_expander() -> None:
     with st.expander("More about this scorecard"):
         st.markdown(
-            "Most Canadian GCs, from \\$5M to \\$500M+, are bleeding "
-            "**3% to 8% of annual revenue** before close-out even hits. "
-            "That number scales with you:"
+            "Most Canadian GCs in the \\$5M to \\$40M range are losing "
+            "**2% to 4% of annual revenue** to margin leak. Industry math "
+            "for what that looks like:"
         )
         st.markdown(
-            "- **\\$15M shop:** \\$300K to \\$900K a year\n"
-            "- **\\$50M shop:** \\$1.5M to \\$4M a year\n"
-            "- **\\$150M shop:** \\$3M to \\$15M a year\n"
-            "- **\\$500M+:** seven to eight figures annually"
+            "- **\\$5M-\\$10M shop:** \\$100K to \\$400K a year\n"
+            "- **\\$10M-\\$15M shop:** \\$200K to \\$600K a year\n"
+            "- **\\$15M-\\$25M shop:** \\$300K to \\$1M a year\n"
+            "- **\\$25M-\\$40M shop:** \\$500K to \\$1.6M a year"
+        )
+        st.markdown(
+            "The sweet spot is the company in the middle of that range. "
+            "The owner is no longer making every decision personally. New "
+            "executives are stepping in. More projects are running than "
+            "ever. The systems that worked at \\$5M start cracking. That "
+            "is exactly when margin leak gets expensive and exactly when "
+            "this matters most."
         )
         st.markdown(
             "Procore won't flag it. Your PMs say everything's green. Then "
-            "Q4 closes, margin's down two points, and nobody can point to "
+            "Q4 closes, margin is down two points, and nobody can point to "
             "where it went. **This scorecard tells you where.**"
         )
 
@@ -241,13 +249,14 @@ def render_details_expander() -> None:
             "SaaS team that read a book about construction.\n"
             "- **If it doesn't name a real leak, book a call anyway.** If "
             "the output doesn't flag one specific leak you could fix this "
-            "week, book a 15-minute discovery call. We'll find one live, "
-            "or we'll tell you straight there's nothing to find. No pitch "
-            "deck.\n"
-            "- **This is a preview of the paid software.** 60 seconds gets "
-            "you a score and three leaks. The paid software digs through "
-            "your actual closed jobs and typically finds **six to seven "
-            "figures in recoverable margin** on portfolios your size."
+            "week, book a 15-minute autopsy walkthrough. We'll find one "
+            "live or we'll tell you straight there is nothing to find. No "
+            "pitch deck.\n"
+            "- **This is the preview. The full thing is the Company "
+            "Autopsy.** 60 seconds here gives you a score and a short "
+            "read. The Cost Overrun Solution software runs the full "
+            "autopsy on your actual closed jobs and shows you the real "
+            "dollar leak in six figures or more."
         )
 
         st.markdown(
@@ -255,19 +264,19 @@ def render_details_expander() -> None:
             unsafe_allow_html=True,
         )
         st.markdown(
-            "Skip the scorecard. Book a 15-minute discovery call. I'll "
-            "walk you through what the paid software does on your actual "
-            "closed jobs, live, no form."
+            "Skip the scorecard. Book a 15-minute autopsy walkthrough. "
+            "We'll pull one of your closed jobs live and show you where "
+            "the margin went."
         )
-        top_subject = quote("Discovery call request · Margin Leak Scorecard")
+        top_subject = quote("Autopsy walkthrough request · Cost Overrun Solution")
         top_body = quote(
             "Hi Michael,\n\n"
-            "I'd like to book a 15-minute discovery call to see the Black "
-            "Mountain Technologies software.\n\n"
+            "I'd like to book a 15-minute autopsy walkthrough for the "
+            "Cost Overrun Solution software.\n\n"
             "Thanks."
         )
         st.link_button(
-            "Book a 15-minute discovery call",
+            "Book a 15-minute autopsy walkthrough",
             f"mailto:{CONTACT_EMAIL}?subject={top_subject}&body={top_body}",
             use_container_width=True,
         )
@@ -453,19 +462,36 @@ def render_result(score: dict, ai: dict) -> None:
             unsafe_allow_html=True,
         )
 
-    subject = quote(f"Discovery call · Scorecard result · {score['normalized']}/100 {tier['name']}")
+    subject = quote(f"Autopsy walkthrough · Scorecard result · {score['normalized']}/100 {tier['name']}")
     body = quote(
         f"Hi Michael,\n\n"
         f"I just ran the Margin Leak Scorecard. My score was "
         f"{score['normalized']}/100 ({tier['name']}).\n\n"
-        f"I'd like to book a 15-minute discovery call to see the full "
-        f"software.\n\n"
+        f"I'd like to book a 15-minute autopsy walkthrough for the "
+        f"Cost Overrun Solution software.\n\n"
         f"Thanks."
     )
     mailto = f"mailto:{CONTACT_EMAIL}?subject={subject}&body={body}"
 
+    st.markdown(
+        """
+        <div class="bmt-cta-block">
+            <div class="bmt-cta-label">Want the full autopsy?</div>
+            <div class="bmt-cta-body">
+                What you just read is a quick overview based on 10 answers.
+                The full Company Autopsy from our Cost Overrun Solution
+                software runs on your actual closed jobs. We pull a real
+                job, walk the numbers with you, and show you exactly where
+                the margin went and how to get it back on your bottom line.
+                15 minutes. No deck. No pressure.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     st.link_button(
-        "Book a 15-minute discovery call",
+        "Book a 15-minute autopsy walkthrough",
         mailto,
         use_container_width=True,
     )

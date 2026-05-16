@@ -113,15 +113,23 @@ QUESTIONS = [
 ]
 
 ACTIVE_PROJECT_OPTIONS = ["1-3", "4-7", "8-15", "16+"]
-REVENUE_TIERS = ["$5M-$15M", "$15M-$50M", "$50M-$150M", "$150M-$500M", "$500M+"]
+REVENUE_TIERS = [
+    "Under $5M",
+    "$5M-$10M",
+    "$10M-$15M",
+    "$15M-$25M",
+    "$25M-$40M",
+    "Over $40M",
+]
 SCHEDULE_OVERLAP_OPTIONS = ["Yes", "Sometimes", "No"]
 
 REVENUE_DOLLAR_HINTS = {
-    "$5M-$15M": "$50K-$200K annually",
-    "$15M-$50M": "$200K-$800K annually",
-    "$50M-$150M": "$800K-$3M annually",
-    "$150M-$500M": "$3M-$15M annually",
-    "$500M+": "seven to eight figures annually",
+    "Under $5M": "$60K-$200K annually",
+    "$5M-$10M": "$100K-$400K annually",
+    "$10M-$15M": "$200K-$600K annually",
+    "$15M-$25M": "$300K-$1M annually",
+    "$25M-$40M": "$500K-$1.6M annually",
+    "Over $40M": "$800K-$2.5M annually",
 }
 
 # ---------------------------------------------------------------------------
@@ -237,12 +245,15 @@ Do not be clever. Do not be a writer. State what is wrong, state why, state what
 - Name the specific fix, in verb-first grade-6 English.
 - If referencing a dollar amount, use the revenue-tier hint you were given. Do not make up numbers.
 
-Revenue-tier dollar hints:
-- $5M-$15M: $50K-$200K annually
-- $15M-$50M: $200K-$800K annually
-- $50M-$150M: $800K-$3M annually
-- $150M-$500M: $3M-$15M annually
-- $500M+: seven to eight figures annually
+Revenue-tier dollar hints (use the one matching their q9 answer, word-for-word, no embellishment):
+- Under $5M: $60K-$200K annually
+- $5M-$10M: $100K-$400K annually
+- $10M-$15M: $200K-$600K annually
+- $15M-$25M: $300K-$1M annually
+- $25M-$40M: $500K-$1.6M annually
+- Over $40M: $800K-$2.5M annually
+
+The sweet spot of this audience is $5M-$40M shops where the owner is transitioning from making every executive decision to building out a leadership team. Tailor diagnostic insights to that growth-stage reality: portfolio is getting bigger, owner's eyes can't be on every job, the systems that worked at $5M start cracking at $15M and break at $30M.
 
 ### OUTPUT FORMAT
 
