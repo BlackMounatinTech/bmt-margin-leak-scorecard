@@ -18,6 +18,7 @@ import os
 from pathlib import Path
 from urllib.parse import quote
 
+import requests
 import streamlit as st
 import streamlit.components.v1 as components
 from dotenv import load_dotenv
@@ -49,6 +50,9 @@ except Exception:
     pass
 
 CONTACT_EMAIL = "michael@blackmountaintechnologies.ca"
+CONTACT_PHONE = os.environ.get("CONTACT_PHONE", "").strip()
+FORMSPREE_ENDPOINT = os.environ.get("FORMSPREE_ENDPOINT", "").strip()
+CALENDAR_URL = os.environ.get("CALENDAR_URL", "").strip()
 
 
 def _no_math(text: str) -> str:
@@ -474,17 +478,6 @@ def render_result(score: dict, ai: dict) -> None:
             unsafe_allow_html=True,
         )
 
-    subject = quote(f"Autopsy walkthrough · Scorecard result · {score['normalized']}/100 {tier['name']}")
-    body = quote(
-        f"Hi Michael,\n\n"
-        f"I just ran the Margin Leak Scorecard. My score was "
-        f"{score['normalized']}/100 ({tier['name']}).\n\n"
-        f"I'd like to book a 15-minute autopsy walkthrough for the "
-        f"Cost Overrun Solution software.\n\n"
-        f"Thanks."
-    )
-    mailto = f"mailto:{CONTACT_EMAIL}?subject={subject}&body={body}"
-
     st.markdown(
         """
         <div class="bmt-cta-block">
@@ -494,19 +487,129 @@ def render_result(score: dict, ai: dict) -> None:
                 The full Company Autopsy from our Cost Overrun Solution
                 software runs on your actual closed jobs. We take a real
                 job, go through the numbers with you, and show you exactly
-                where the margin went and how to get it back.
-                15 minutes. No pitch deck. No pressure.
+                where the margin went and how to get it back. 15 minutes
+                on video. No pitch deck. No pressure.
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    st.link_button(
-        "Book a 15-minute autopsy walkthrough",
-        mailto,
-        use_container_width=True,
-    )
+    if st.session_state.get("lead_submitted"):
+        lead_name = st.session_state.get("lead_name", "").strip()
+        thanks_name = lead_name.split()[0] if lead_name else "Got it"
+        st.markdown(
+            f"""
+            <div class="bmt-cta-block" style="border-left-color:#10b981;background:linear-gradient(135deg,#eafbf2 0%,#f5fdfa 100%);border-color:#bfeed8;">
+                <div class="bmt-cta-label" style="color:#10b981;">Thanks {thanks_name}</div>
+                <div class="bmt-cta-body">
+                    Your details are on their way to Michael. He will reach
+                    out within 24 hours to set up the video walkthrough.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        if CALENDAR_URL:
+            st.markdown(
+                "Or skip the back-and-forth and pick a time directly:"
+            )
+            st.link_button(
+                "Pick a time for the video walkthrough",
+                CALENDAR_URL,
+                use_container_width=True,
+            )
+    else:
+        form_col, contact_col = st.columns([2, 1])
+
+        with form_col:
+            with st.form("lead_form", clear_on_submit=False):
+                st.markdown("**Get in touch**")
+                lead_name_in = st.text_input("Your name")
+                lead_phone_in = st.text_input("Phone")
+                lead_email_in = st.text_input("Email")
+                lead_size_in = st.selectbox(
+                    "Approximate company size",
+                    REVENUE_TIERS,
+                    index=1,
+                )
+                lead_issue_in = st.text_area(
+                    "Biggest cost problem you are dealing with right now",
+                    placeholder="One or two sentences is fine.",
+                    height=80,
+                )
+                submit_lead = st.form_submit_button("Send", use_container_width=True)
+
+            if submit_lead:
+                errs: list[str] = []
+                if not lead_name_in.strip():
+                    errs.append("Add your name.")
+                if not lead_phone_in.strip():
+                    errs.append("Add your phone.")
+                if not lead_email_in.strip() or "@" not in lead_email_in:
+                    errs.append("Add a valid email.")
+
+                if errs:
+                    for e in errs:
+                        st.error(e)
+                elif not FORMSPREE_ENDPOINT:
+                    st.error(
+                        "The contact form is not wired up yet. "
+                        f"Email {CONTACT_EMAIL} directly."
+                    )
+                else:
+                    try:
+                        response = requests.post(
+                            FORMSPREE_ENDPOINT,
+                            data={
+                                "name": lead_name_in,
+                                "phone": lead_phone_in,
+                                "email": lead_email_in,
+                                "company_size": lead_size_in,
+                                "issue": lead_issue_in,
+                                "scorecard_score": f"{score['normalized']}/100",
+                                "scorecard_tier": tier["name"],
+                            },
+                            headers={"Accept": "application/json"},
+                            timeout=10,
+                        )
+                        if response.ok:
+                            st.session_state["lead_submitted"] = True
+                            st.session_state["lead_name"] = lead_name_in
+                            st.rerun()
+                        else:
+                            st.error(
+                                "Something went wrong sending the form. "
+                                f"Email {CONTACT_EMAIL} directly."
+                            )
+                    except Exception as e:
+                        st.error(
+                            "Could not send the form. "
+                            f"Email {CONTACT_EMAIL} directly. ({e})"
+                        )
+
+        with contact_col:
+            phone_html = (
+                f"<div class='bmt-contact-row'>Or call: "
+                f"<strong>{CONTACT_PHONE}</strong></div>"
+                if CONTACT_PHONE else ""
+            )
+            st.markdown(
+                f"""
+                <div class="bmt-contact-card">
+                    <div class="bmt-contact-label">Reach me directly</div>
+                    <div class="bmt-contact-row">
+                        Email:<br/><strong>{CONTACT_EMAIL}</strong>
+                    </div>
+                    {phone_html}
+                    <div class="bmt-contact-row" style="margin-top:14px;font-style:italic;color:var(--text-secondary);font-size:13px;">
+                        First meeting is 15 minutes on video so I can show
+                        you the software running on a real closed job.
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
     if ai.get("_error"):
         st.info(
@@ -516,8 +619,9 @@ def render_result(score: dict, ai: dict) -> None:
 
     st.write("")
     if st.button("Start over", key="restart"):
-        if "result" in st.session_state:
-            del st.session_state["result"]
+        for key in ("result", "lead_submitted", "lead_name"):
+            if key in st.session_state:
+                del st.session_state[key]
         st.rerun()
 
 
