@@ -51,7 +51,10 @@ except Exception:
 
 CONTACT_EMAIL = "michael@blackmountaintechnologies.ca"
 CONTACT_PHONE = os.environ.get("CONTACT_PHONE", "250-254-2377").strip()
-FORMSPREE_ENDPOINT = os.environ.get("FORMSPREE_ENDPOINT", "").strip()
+FORMSPREE_ENDPOINT = os.environ.get(
+    "FORMSPREE_ENDPOINT",
+    "https://formspree.io/f/mvzledqa",
+).strip()
 CALENDAR_URL = os.environ.get("CALENDAR_URL", "").strip()
 
 
