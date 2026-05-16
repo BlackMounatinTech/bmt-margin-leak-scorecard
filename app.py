@@ -55,7 +55,10 @@ FORMSPREE_ENDPOINT = os.environ.get(
     "FORMSPREE_ENDPOINT",
     "https://formspree.io/f/mvzledqa",
 ).strip()
-CALENDAR_URL = os.environ.get("CALENDAR_URL", "").strip()
+CALENDAR_URL = os.environ.get(
+    "CALENDAR_URL",
+    "https://calendly.com/michael-blackmountaintechnologies/30min",
+).strip()
 
 
 def _no_math(text: str) -> str:
